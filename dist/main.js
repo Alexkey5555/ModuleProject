@@ -1,1 +1,1 @@
-(()=>{"use strict";console.log("Я модуль first"),console.log("Я модуль second")})();
+(()=>{"use strict";console.log("Я модуль one.js"),console.log("Я модуль two.js")})();

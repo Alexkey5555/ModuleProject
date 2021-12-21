@@ -1,5 +1,5 @@
 const secondModule = () => {
-    console.log('Я модуль second');
+    console.log('Я модуль two.js');
 }
 export default secondModule
 

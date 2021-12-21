@@ -4,5 +4,5 @@ import second from './modules/two';
 
 
 
-first()
-second()
+first();
+second();
