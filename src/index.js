@@ -1,8 +1,7 @@
 
-import first from './modules/one';
-import second from './modules/two';
+import timer from './modules/timer';
 
 
 
-first();
-second();
+
+timer('31 december 2021');
