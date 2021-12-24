@@ -5,14 +5,13 @@ const timer = (deadLine) => {
     const timer = document.querySelectorAll('#timer span')
     const timerDays = document.createElement('span')
     const span = document.createElement('span')
+    let checkTime;
     span.textContent = ' : '
-
+    timerDays.textContent = '00'
     timerDays.id = 'timer-days'
     timer[0].before(timerDays)
     timer[0].before(span)
     const getTimeRemaining = () => {
-
-
         let dateStop = new Date(deadLine).getTime()
         let dateNow = new Date().getTime()
         let timeRemaining = (dateStop - dateNow) / 1000
@@ -23,19 +22,41 @@ const timer = (deadLine) => {
 
         return { timeRemaining, days, hours, minutes, seconds }
     }
+
+    checkTime = getTimeRemaining()
     const updateClock = () => {
         let getTime = getTimeRemaining()
 
-        timerDays.textContent = getTime.days
-        timerHours.textContent = getTime.hours
-        timerMinutes.textContent = getTime.minutes
-        timerSeconds.textContent = getTime.seconds
-        if (getTime.timeRemaining > 0) {
-            setTimeout(updateClock, 1000)
+        if (getTime.days < 10) {
+            timerDays.textContent = '0' + getTime.days;
         }
+        else {
+            timerDays.textContent = getTime.days
+        }
+        if (getTime.hours < 10) {
+            timerHours.textContent = '0' + getTime.hours;
+        }
+        else {
+            timerHours.textContent = getTime.hours
+        }
+        if (getTime.minutes < 10) {
+            timerMinutes.textContent = '0' + getTime.minutes;
+        }
+        else {
+            timerMinutes.textContent = getTime.minutes
+        }
+        if (getTime.seconds < 10) {
+            timerSeconds.textContent = '0' + getTime.seconds;
+        }
+        else {
+            timerSeconds.textContent = getTime.seconds
+        }
+
+    }
+    if (checkTime.timeRemaining > 0) {
+        setInterval(updateClock, 1000)
     }
 
-    updateClock()
 
 }
 export default timer
