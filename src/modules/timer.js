@@ -54,6 +54,7 @@ const timer = (deadLine) => {
 
     }
     if (checkTime.timeRemaining > 0) {
+        updateClock()
         setInterval(updateClock, 1000)
     }
 
