@@ -17,7 +17,6 @@ const modal = () => {
                     let count = +modal.style.opacity
                     count += 0.1
                     modal.style.opacity = count
-                    console.log(modal.style.opacity);
                 }
             }, 80)
         })
