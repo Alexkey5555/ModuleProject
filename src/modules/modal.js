@@ -2,11 +2,12 @@ const modal = () => {
     const modal = document.querySelector('.popup')
     const buttons = document.querySelectorAll('.popup-btn')
     const closeBtn = modal.querySelector('.popup-close')
-    const width = document.documentElement.scrollWidth
+
     modal.style.opacity = '0'
 
     buttons.forEach(btn => {
         btn.addEventListener('click', () => {
+            const width = document.documentElement.scrollWidth
             modal.style.display = 'block'
             let timer = setInterval(() => {
                 if (modal.style.opacity === '1') clearInterval(timer);
