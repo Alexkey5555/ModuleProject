@@ -14,6 +14,7 @@ const modal = () => {
                 if (modal.style.opacity === '1') cancelAnimationFrame(timer);
                 else if (width < 768) {
                     modal.style.opacity = '1'
+
                 }
                 else {
                     let count = +modal.style.opacity
