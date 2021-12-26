@@ -8,10 +8,12 @@ const modal = () => {
     buttons.forEach(btn => {
         btn.addEventListener('click', () => {
             modal.style.display = 'block'
+            console.log(width);
             let timer = setInterval(() => {
                 if (modal.style.opacity === '1') clearInterval(timer);
                 else if (width < 768) {
                     modal.style.opacity = '1'
+
                 }
                 else {
                     let count = +modal.style.opacity
