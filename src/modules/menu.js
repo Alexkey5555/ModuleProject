@@ -3,9 +3,10 @@ const menu = () => {
     const menu = document.querySelector('menu')
     const closeBtn = menu.querySelector('.close-btn')
     const menuItems = menu.querySelectorAll('ul>li>a')
-    const btnDown = document.querySelector('a[href="#service-block"]>img')
+    const btnDown = document.querySelector('a[href="#service-block"]')
 
     btnDown.addEventListener('click', (event) => {
+        event.preventDefault()
         let a = event.target.parentElement.attributes.href.value.slice(1)
         let href = document.getElementById(a)
         href.scrollIntoView({ behavior: "smooth" })
