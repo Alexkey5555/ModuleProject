@@ -1,1 +1,146 @@
-(()=>{"use strict";(e=>{const t=document.getElementById("timer-hours"),n=document.getElementById("timer-minutes"),c=document.getElementById("timer-seconds"),o=document.querySelectorAll("#timer span"),s=document.createElement("span"),a=document.createElement("span");let l;a.textContent=" : ",s.textContent="00",s.id="timer-days",o[0].before(s),o[0].before(a);const r=()=>{let t=(new Date(e).getTime()-(new Date).getTime())/1e3;return{timeRemaining:t,days:Math.floor(t/60/60/24),hours:Math.floor(t/60/60%24),minutes:Math.floor(t/60%60),seconds:Math.floor(t%60)}};l=r();const i=()=>{let e=r();e.days<10?s.textContent="0"+e.days:s.textContent=e.days,e.hours<10?t.textContent="0"+e.hours:t.textContent=e.hours,e.minutes<10?n.textContent="0"+e.minutes:n.textContent=e.minutes,e.seconds<10?c.textContent="0"+e.seconds:c.textContent=e.seconds};l.timeRemaining>0&&(i(),setInterval(i,1e3))})("31 december 2021, 24:00"),(()=>{const e=document.querySelector("menu"),t=e.querySelectorAll("ul>li>a");document.addEventListener("click",(n=>{n.target.closest(".menu")||n.target.classList.contains("close-btn")?(n.preventDefault(),e.classList.toggle("active-menu")):n.target.classList.contains("active-menu")||e.classList.remove("active-menu"),n.target.closest('a[href="#service-block"]')&&(n.preventDefault(),document.getElementById("service-block").scrollIntoView({behavior:"smooth"})),t.forEach((t=>{if(n.target===t){n.preventDefault();let t=n.target.attributes.href.value.slice(1);document.getElementById(t).scrollIntoView({behavior:"smooth"}),e.classList.remove("active-menu")}}))}))})(),(()=>{const e=document.querySelector(".popup");let t;document.querySelectorAll(".popup-btn").forEach((n=>{n.addEventListener("click",(()=>{e.style.display="block",e.style.opacity="0";const n=()=>{const c=document.documentElement.scrollWidth;if(t=requestAnimationFrame(n),"1"===e.style.opacity)cancelAnimationFrame(t);else if(c<768)e.style.opacity="1";else{let t=+e.style.opacity;t+=.04,e.style.opacity=t}};n()}))})),e.addEventListener("click",(t=>{t.target.closest(".popup-content")&&!t.target.classList.contains("popup-close")||(e.style.display="none")}))})(),(()=>{const e=document.querySelectorAll(".calc-item"),t=document.querySelectorAll('input[type="text"], input[placeholder="Ваше сообщение"]'),n=document.querySelectorAll('input[type="email"]'),c=document.querySelectorAll('input[type="tel"]'),o=e=>{e.target.value=e.target.value.replace(/\D+/g,"")},s=e=>{e.target.value=e.target.value.replace(/[^а-яА-Я -]/g,"")},a=e=>{e.target.value=e.target.value.replace(/[^\w\@\-!.'*`]+/g,"")},l=e=>{e.target.value=e.target.value.replace(/[^\d\-\(\)]+/g,"")};e.forEach((e=>{e[0]||e.addEventListener("input",o)})),t.forEach((e=>{/calc-item/g.test(e.classList.value)||e.addEventListener("input",s)})),n.forEach((e=>{e.addEventListener("input",a)})),c.forEach((e=>{e.addEventListener("input",l)}))})(),(()=>{const e=document.querySelector(".service-header"),t=document.querySelectorAll(".service-header-tab"),n=document.querySelectorAll(".service-tab");e.addEventListener("click",(e=>{if(e.target.closest(".service-header-tab")){const c=e.target.closest(".service-header-tab");t.forEach(((e,t)=>{e===c?(e.classList.add("active"),n[t].classList.remove("d-none")):(e.classList.remove("active"),n[t].classList.add("d-none"))}))}}))})()})();
+/*
+ * ATTENTION: The "eval" devtool has been used (maybe by default in mode: "development").
+ * This devtool is neither made for production nor for readable output files.
+ * It uses "eval()" calls to create a separate source file in the browser devtools.
+ * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
+ * or disable the default devtool with "devtool: false".
+ * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
+ */
+/******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
+/******/ 	var __webpack_modules__ = ({
+
+/***/ "./index.js":
+/*!******************!*\
+  !*** ./index.js ***!
+  \******************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_timer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/timer */ \"./modules/timer.js\");\n/* harmony import */ var _modules_menu__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/menu */ \"./modules/menu.js\");\n/* harmony import */ var _modules_modal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/modal */ \"./modules/modal.js\");\n/* harmony import */ var _modules_validate__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/validate */ \"./modules/validate.js\");\n/* harmony import */ var _modules_tabs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/tabs */ \"./modules/tabs.js\");\n/* harmony import */ var _modules_slider__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/slider */ \"./modules/slider.js\");\n\n\n\n\n\n\n\n\n\n\n\n(0,_modules_timer__WEBPACK_IMPORTED_MODULE_0__[\"default\"])('31 december 2021, 24:00');\n(0,_modules_menu__WEBPACK_IMPORTED_MODULE_1__[\"default\"])()\n;(0,_modules_modal__WEBPACK_IMPORTED_MODULE_2__[\"default\"])()\n;(0,_modules_validate__WEBPACK_IMPORTED_MODULE_3__[\"default\"])()\n;(0,_modules_tabs__WEBPACK_IMPORTED_MODULE_4__[\"default\"])()\n;(0,_modules_slider__WEBPACK_IMPORTED_MODULE_5__[\"default\"])()\n\n\n//# sourceURL=webpack:///./index.js?");
+
+/***/ }),
+
+/***/ "./modules/menu.js":
+/*!*************************!*\
+  !*** ./modules/menu.js ***!
+  \*************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nconst menu = () => {\n    const menu = document.querySelector('menu')\n    const menuItems = menu.querySelectorAll('ul>li>a')\n\n    document.addEventListener('click', (e) => {\n        if (e.target.closest('.menu') || e.target.classList.contains('close-btn')) {\n            e.preventDefault()\n            menu.classList.toggle('active-menu')\n        }\n        else if (!e.target.classList.contains('active-menu')) {\n            menu.classList.remove('active-menu')\n        }\n        if (e.target.closest('a[href=\"#service-block\"]')) {\n            e.preventDefault()\n            let href = document.getElementById('service-block')\n            href.scrollIntoView({ behavior: \"smooth\" })\n        }\n        menuItems.forEach((item) => {\n            if (e.target === item) {\n                e.preventDefault()\n                let linkhref = e.target.attributes.href.value.slice(1)\n                let link = document.getElementById(linkhref)\n                link.scrollIntoView({ behavior: \"smooth\" })\n                menu.classList.remove('active-menu')\n            }\n        })\n\n    })\n}\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (menu);\n\n\n\n//# sourceURL=webpack:///./modules/menu.js?");
+
+/***/ }),
+
+/***/ "./modules/modal.js":
+/*!**************************!*\
+  !*** ./modules/modal.js ***!
+  \**************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nconst modal = () => {\n    const modal = document.querySelector('.popup')\n    const buttons = document.querySelectorAll('.popup-btn')\n    let timer;\n\n    buttons.forEach(btn => {\n        btn.addEventListener('click', () => {\n            modal.style.display = 'block'\n            modal.style.opacity = '0'\n            const animate = () => {\n                const width = document.documentElement.scrollWidth\n                timer = requestAnimationFrame(animate)\n                if (modal.style.opacity === '1') cancelAnimationFrame(timer);\n                else if (width < 768) {\n                    modal.style.opacity = '1'\n\n                }\n                else {\n                    let count = +modal.style.opacity\n                    count += 0.04\n                    modal.style.opacity = count\n                }\n            }\n            animate()\n        })\n    })\n    modal.addEventListener('click', (e) => {\n        if (!e.target.closest('.popup-content') || e.target.classList.contains('popup-close')) {\n            modal.style.display = 'none'\n        }\n    })\n}\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (modal);\n\n//# sourceURL=webpack:///./modules/modal.js?");
+
+/***/ }),
+
+/***/ "./modules/slider.js":
+/*!***************************!*\
+  !*** ./modules/slider.js ***!
+  \***************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nconst slider = () => {\n    const sliderBlock = document.querySelector('.portfolio-content')\n    const slides = document.querySelectorAll('.portfolio-item')\n\n    for (let i = 0; i < slides.length; i++) {\n        const dote = document.querySelector('.portfolio-dots')\n        let dot = document.createElement('li')\n        if (i == 0) {\n            dot.classList.add('dot')\n            dot.classList.add('dot-active')\n        }\n        else {\n            dot.classList.add('dot')\n        }\n        dote.append(dot)\n    }\n\n    const dots = document.querySelectorAll('.dot')\n\n    let currentSlide = 0\n    let interval\n    const timeInterval = 2000\n    const prevSlide = (elems, index, strClass) => {\n        elems[index].classList.remove(strClass)\n    }\n    const nextSlide = (elems, index, strClass) => {\n        elems[index].classList.add(strClass)\n    }\n    const autoSlide = () => {\n        prevSlide(slides, currentSlide, 'portfolio-item-active')\n        prevSlide(dots, currentSlide, 'dot-active')\n\n        currentSlide++\n        if (currentSlide >= slides.length) {\n            currentSlide = 0\n        }\n        nextSlide(slides, currentSlide, 'portfolio-item-active')\n        nextSlide(dots, currentSlide, 'dot-active')\n\n    }\n    const startSlide = () => {\n\n        interval = setInterval(autoSlide, timeInterval)\n    }\n    const stopSlide = () => {\n        clearInterval(interval)\n    }\n    sliderBlock.addEventListener('click', (e) => {\n        e.preventDefault()\n        if (!e.target.matches('.dot, .portfolio-btn')) {\n            return\n        }\n\n        prevSlide(slides, currentSlide, 'portfolio-item-active')\n        prevSlide(dots, currentSlide, 'dot-active')\n        if (e.target.matches('#arrow-right')) {\n            currentSlide++\n        }\n        else if (e.target.matches('#arrow-left')) {\n            currentSlide--\n        }\n        else if (e.target.classList.contains('dot')) {\n            dots.forEach((dot, index) => {\n                if (e.target === dot) {\n                    currentSlide = index\n                }\n            })\n        }\n        if (currentSlide >= slides.length) {\n            currentSlide = 0\n        }\n        if (currentSlide < 0) {\n            currentSlide = slides.length - 1\n        }\n        nextSlide(slides, currentSlide, 'portfolio-item-active')\n        nextSlide(dots, currentSlide, 'dot-active')\n    })\n    sliderBlock.addEventListener('mouseenter', (e) => {\n        if (e.target.matches('.dot, .portfolio-btn')) {\n            stopSlide()\n        }\n    }, true)\n    sliderBlock.addEventListener('mouseleave', (e) => {\n        if (e.target.matches('.dot, .portfolio-btn')) {\n            startSlide(timeInterval)\n        }\n    }, true)\n\n    startSlide(timeInterval)\n}\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (slider);\n\n//# sourceURL=webpack:///./modules/slider.js?");
+
+/***/ }),
+
+/***/ "./modules/tabs.js":
+/*!*************************!*\
+  !*** ./modules/tabs.js ***!
+  \*************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nconst tabs = () => {\n    const tabPanel = document.querySelector('.service-header')\n    const tabs = document.querySelectorAll('.service-header-tab')\n    const tabContent = document.querySelectorAll('.service-tab')\n\n    tabPanel.addEventListener('click', (e) => {\n        if (e.target.closest('.service-header-tab')) {\n            const tabBtn = e.target.closest('.service-header-tab')\n\n            tabs.forEach((tab, index) => {\n                if (tab === tabBtn) {\n                    tab.classList.add('active')\n                    tabContent[index].classList.remove('d-none')\n                }\n                else {\n                    tab.classList.remove('active')\n                    tabContent[index].classList.add('d-none')\n                }\n            })\n        }\n    })\n}\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (tabs);\n\n//# sourceURL=webpack:///./modules/tabs.js?");
+
+/***/ }),
+
+/***/ "./modules/timer.js":
+/*!**************************!*\
+  !*** ./modules/timer.js ***!
+  \**************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nconst timer = (deadLine) => {\n    const timerHours = document.getElementById('timer-hours')\n    const timerMinutes = document.getElementById('timer-minutes')\n    const timerSeconds = document.getElementById('timer-seconds')\n    const timer = document.querySelectorAll('#timer span')\n    const timerDays = document.createElement('span')\n    const span = document.createElement('span')\n    let checkTime;\n    span.textContent = ' : '\n    timerDays.textContent = '00'\n    timerDays.id = 'timer-days'\n    timer[0].before(timerDays)\n    timer[0].before(span)\n    const getTimeRemaining = () => {\n        let dateStop = new Date(deadLine).getTime()\n        let dateNow = new Date().getTime()\n        let timeRemaining = (dateStop - dateNow) / 1000\n        let days = Math.floor(timeRemaining / 60 / 60 / 24)\n        let hours = Math.floor((timeRemaining / 60 / 60) % 24)\n        let minutes = Math.floor((timeRemaining / 60) % 60)\n        let seconds = Math.floor(timeRemaining % 60)\n\n        return { timeRemaining, days, hours, minutes, seconds }\n    }\n\n    checkTime = getTimeRemaining()\n    const updateClock = () => {\n        let getTime = getTimeRemaining()\n\n        if (getTime.days < 10) {\n            timerDays.textContent = '0' + getTime.days;\n        }\n        else {\n            timerDays.textContent = getTime.days\n        }\n        if (getTime.hours < 10) {\n            timerHours.textContent = '0' + getTime.hours;\n        }\n        else {\n            timerHours.textContent = getTime.hours\n        }\n        if (getTime.minutes < 10) {\n            timerMinutes.textContent = '0' + getTime.minutes;\n        }\n        else {\n            timerMinutes.textContent = getTime.minutes\n        }\n        if (getTime.seconds < 10) {\n            timerSeconds.textContent = '0' + getTime.seconds;\n        }\n        else {\n            timerSeconds.textContent = getTime.seconds\n        }\n\n    }\n    if (checkTime.timeRemaining > 0) {\n        updateClock()\n        setInterval(updateClock, 1000)\n    }\n\n\n}\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (timer);\n\n//# sourceURL=webpack:///./modules/timer.js?");
+
+/***/ }),
+
+/***/ "./modules/validate.js":
+/*!*****************************!*\
+  !*** ./modules/validate.js ***!
+  \*****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nconst validate = () => {\n    const validCalc = document.querySelectorAll('.calc-item')\n    const validText = document.querySelectorAll('input[type=\"text\"], input[placeholder=\"Ваше сообщение\"]')\n    const validEmail = document.querySelectorAll('input[type=\"email\"]')\n    const validTel = document.querySelectorAll('input[type=\"tel\"]')\n\n    const validateCalc = (e) => {\n        let check = /\\D+/g;\n        e.target.value = e.target.value.replace(check, '');\n    }\n    const validateText = (e) => {\n        let check = /[^а-яА-Я -]/g;\n        e.target.value = e.target.value.replace(check, '');\n    }\n    const validateEmail = (e) => {\n        let check = /[^\\w\\@\\-!.'*`]+/g;\n        e.target.value = e.target.value.replace(check, '');\n    }\n    const validateTel = (e) => {\n        let check = /[^\\d\\-\\(\\)]+/g;\n        e.target.value = e.target.value.replace(check, '');\n    }\n\n    validCalc.forEach((event) => {\n        if (event[0]) {\n            return\n        }\n        else {\n            event.addEventListener('input', validateCalc)\n        }\n    })\n\n    validText.forEach((event) => {\n        if (/calc-item/g.test(event.classList.value)) {\n            return\n        }\n        else {\n            event.addEventListener('input', validateText)\n        }\n    })\n\n    validEmail.forEach((event) => {\n        event.addEventListener('input', validateEmail)\n    })\n\n    validTel.forEach((event) => {\n        event.addEventListener('input', validateTel)\n    })\n}\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (validate);\n\n//# sourceURL=webpack:///./modules/validate.js?");
+
+/***/ })
+
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/************************************************************************/
+/******/ 	
+/******/ 	// startup
+/******/ 	// Load entry module and return exports
+/******/ 	// This entry module can't be inlined because the eval devtool is used.
+/******/ 	var __webpack_exports__ = __webpack_require__("./index.js");
+/******/ 	
+/******/ })()
+;
