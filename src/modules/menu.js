@@ -10,10 +10,9 @@ const menu = () => {
         else if (!e.target.classList.contains('active-menu')) {
             menu.classList.remove('active-menu')
         }
-        if (e.target.parentElement.attributes.href.value == '#service-block') {
+        if (e.target.closest('a[href="#service-block"]')) {
             e.preventDefault()
-            let a = e.target.parentElement.attributes.href.value.slice(1)
-            let href = document.getElementById(a)
+            let href = document.getElementById('service-block')
             href.scrollIntoView({ behavior: "smooth" })
         }
         menuItems.forEach((item) => {
