@@ -5,6 +5,19 @@ const calc = (price = 100) => {
     const calcCount = document.querySelector('.calc-count')
     const calcDay = document.querySelector('.calc-day')
     const total = document.getElementById('total')
+    let interval
+    const step = 1;
+
+    function animateTotal(num) {
+        let n = 0;
+        interval = setInterval(() => {
+            n = n + step;
+            if (n === num) {
+                clearInterval(interval);
+            }
+            total.textContent = n;
+        }, 0.5);
+    }
 
     const countCalc = () => {
         const calcTypeValue = +calcType.options[calcType.selectedIndex].value
@@ -28,10 +41,11 @@ const calc = (price = 100) => {
         else {
             totalValue = 0
         }
-        total.textContent = totalValue
+        animateTotal(totalValue);
     }
     calcBlock.addEventListener('input', (e) => {
-        if (e.target === calcType || e.target === calcSquare ||
+        clearInterval(interval);
+        if (e.target === calcSquare ||
             e.target === calcCount || e.target === calcDay) {
             countCalc()
         }
