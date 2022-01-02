@@ -6,17 +6,22 @@ const calc = (price = 100) => {
     const calcDay = document.querySelector('.calc-day')
     const total = document.getElementById('total')
     let interval
-    const step = 1;
+
 
     function animateTotal(num) {
-        let n = 0;
+        let n = +total.textContent
         interval = setInterval(() => {
-            n = n + step;
+            if (n < num) {
+                n = n + 5
+            }
+            if (n > num) {
+                n = n - 5
+            }
             if (n === num) {
                 clearInterval(interval);
             }
             total.textContent = n;
-        }, 0.5);
+        }, 1);
     }
 
     const countCalc = () => {
@@ -43,7 +48,7 @@ const calc = (price = 100) => {
         }
         animateTotal(totalValue);
     }
-    calcBlock.addEventListener('input', (e) => {
+    calcBlock.addEventListener('change', (e) => {
         clearInterval(interval);
         if (e.target === calcSquare ||
             e.target === calcCount || e.target === calcDay) {
