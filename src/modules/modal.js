@@ -1,27 +1,21 @@
+import { animate } from './helpers'
 const modal = () => {
     const modal = document.querySelector('.popup')
     const buttons = document.querySelectorAll('.popup-btn')
-    let timer;
 
     buttons.forEach(btn => {
         btn.addEventListener('click', () => {
             modal.style.display = 'block'
             modal.style.opacity = '0'
-            const animate = () => {
-                const width = document.documentElement.scrollWidth
-                timer = requestAnimationFrame(animate)
-                if (modal.style.opacity === '1') cancelAnimationFrame(timer);
-                else if (width < 768) {
-                    modal.style.opacity = '1'
-
+            animate({
+                duration: 1000,
+                timing(timeFraction) {
+                    return timeFraction;
+                },
+                draw(progress) {
+                    modal.style.opacity = progress
                 }
-                else {
-                    let count = +modal.style.opacity
-                    count += 0.04
-                    modal.style.opacity = count
-                }
-            }
-            animate()
+            });
         })
     })
     modal.addEventListener('click', (e) => {

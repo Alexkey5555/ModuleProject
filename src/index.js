@@ -10,7 +10,7 @@ import calc from './modules/calc';
 
 
 
-timer('31 december 2021, 24:00');
+timer('31 april 2022, 24:00');
 menu()
 modal()
 validate()
