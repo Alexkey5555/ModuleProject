@@ -7,21 +7,33 @@ const calc = (price = 100) => {
     const total = document.getElementById('total')
     let interval
 
-
-    function animateTotal(num) {
+    const animateTotal = (num) => {
+        let id
+        let start = performance.now()
+        let progress = 0
+        let result = 0
         let n = +total.textContent
-        interval = setInterval(() => {
-            if (n < num) {
-                n = n + 5
+        let to = n - num
+        let animateCalc = () => {
+            let now = performance.now()
+            progress = (now - start) / 1000
+
+            if (progress <= 1) {
+                if (n < num) {
+                    result = num * progress
+                }
+                if (n > num) {
+                    result = n - to * progress
+                }
+                id = requestAnimationFrame(animateCalc)
             }
-            if (n > num) {
-                n = n - 5
+            else {
+                result = num
+                cancelAnimationFrame(id)
             }
-            if (n === num) {
-                clearInterval(interval);
-            }
-            total.textContent = n;
-        }, 1);
+            total.textContent = Math.trunc(+result)
+        }
+        animateCalc()
     }
 
     const countCalc = () => {
@@ -46,6 +58,7 @@ const calc = (price = 100) => {
         else {
             totalValue = 0
         }
+
         animateTotal(totalValue);
     }
     calcBlock.addEventListener('change', (e) => {
