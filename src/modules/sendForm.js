@@ -1,5 +1,6 @@
 const sendForm = ({ formId, someElem = [] }) => {
     const form = document.getElementById(formId)
+    const modal = document.querySelector('.popup')
     const statusBlock = document.createElement('div')
     const loadText = 'Загрузка...'
     const errorText = 'Ошибка...'
@@ -12,19 +13,29 @@ const sendForm = ({ formId, someElem = [] }) => {
         list.forEach(elem => {
             if (elem.name === 'user_name') {
                 let checkName = /[^а-яА-Я ]/g;
-                if (checkName.test(elem.value)) {
+                if (checkName.test(elem.value) || elem.value.length <= 1) {
+                    elem.style.border = '1px solid red'
                     success = false
                 }
             }
             if (elem.name === 'user_phone') {
                 let checkPhone = /[^\d\-+\(\)]+/g;
-                if (checkPhone.test(elem.value)) {
+                if (checkPhone.test(elem.value) || elem.value.length < 5 || elem.value.length > 11) {
                     success = false
+                    elem.style.border = '1px solid red'
+
                 }
             }
             if (elem.name === 'user_message') {
                 let checkMes = /[^а-яА-Я \.\d]/g;
-                if (checkMes.test(elem.value)) {
+                if (checkMes.test(elem.value) || elem.value.length < 4) {
+                    elem.style.border = '1px solid red'
+                    success = false
+                }
+            }
+            if (elem.name === 'user_email') {
+                if (elem.value.length === 0) {
+                    elem.style.border = '1px solid red'
                     success = false
                 }
             }
@@ -59,15 +70,17 @@ const sendForm = ({ formId, someElem = [] }) => {
                     formElements.forEach(input => {
                         input.value = ''
                     })
+                    setTimeout(() => {
+                        statusBlock.textContent = ''
+                        modal.style.display = 'none'
+                    }, 1000)
                 })
                 .catch(error => {
                     statusBlock.textContent = errorText
                 })
         } else {
             alert('Данные не валидны!!!')
-            formElements.forEach(input => {
-                input.value = ''
-            })
+
             statusBlock.textContent = ''
         }
     }

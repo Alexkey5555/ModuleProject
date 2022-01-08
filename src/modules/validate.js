@@ -1,6 +1,7 @@
 const validate = () => {
     const validCalc = document.querySelectorAll('.calc-item')
-    const validText = document.querySelectorAll('input[type="text"], input[placeholder="Ваше сообщение"]')
+    const validText = document.querySelectorAll('input[type="text"]')
+    const validMes = document.querySelectorAll('input[name="user_message"]')
     const validEmail = document.querySelectorAll('input[type="email"]')
     const validTel = document.querySelectorAll('input[type="tel"]')
 
@@ -12,13 +13,16 @@ const validate = () => {
         let check = /[^а-яА-Я -]/g;
         e.target.value = e.target.value.replace(check, '');
     }
-
+    const validateMes = (e) => {
+        let check = /[^а-яА-Я -\d\,\.]/g;
+        e.target.value = e.target.value.replace(check, '');
+    }
     const validateEmail = (e) => {
         let check = /[^\w\@\-!.'*`]+/g;
         e.target.value = e.target.value.replace(check, '');
     }
     const validateTel = (e) => {
-        let check = /[^\d\-\(\)]+/g;
+        let check = /[^\d\-+\(\)]+/g;
         e.target.value = e.target.value.replace(check, '');
     }
 
@@ -39,7 +43,9 @@ const validate = () => {
             event.addEventListener('input', validateText)
         }
     })
-
+    validMes.forEach((event) => {
+        event.addEventListener('input', validateMes)
+    })
     validEmail.forEach((event) => {
         event.addEventListener('input', validateEmail)
     })
@@ -48,3 +54,4 @@ const validate = () => {
         event.addEventListener('input', validateTel)
     })
 }
+export default validate
