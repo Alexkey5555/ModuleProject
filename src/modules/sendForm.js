@@ -1,17 +1,34 @@
-import validate from "./validate"
-
 const sendForm = ({ formId, someElem = [] }) => {
     const form = document.getElementById(formId)
     const statusBlock = document.createElement('div')
-    statusBlock.style.color = 'white'
     const loadText = 'Загрузка...'
     const errorText = 'Ошибка...'
     const successText = 'Спасибо. Наш менеджер с вами свяжется'
+    statusBlock.style.color = 'white'
 
     const validate = (list) => {
         let success = true
 
-
+        list.forEach(elem => {
+            if (elem.name === 'user_name') {
+                let checkName = /[^а-яА-Я ]/g;
+                if (checkName.test(elem.value)) {
+                    success = false
+                }
+            }
+            if (elem.name === 'user_phone') {
+                let checkPhone = /[^\d\-+\(\)]+/g;
+                if (checkPhone.test(elem.value)) {
+                    success = false
+                }
+            }
+            if (elem.name === 'user_message') {
+                let checkMes = /[^а-яА-Я \.\d]/g;
+                if (checkMes.test(elem.value)) {
+                    success = false
+                }
+            }
+        })
         return success
     }
     const submitFrom = () => {
@@ -48,6 +65,10 @@ const sendForm = ({ formId, someElem = [] }) => {
                 })
         } else {
             alert('Данные не валидны!!!')
+            formElements.forEach(input => {
+                input.value = ''
+            })
+            statusBlock.textContent = ''
         }
     }
     const sendData = (data) => {
