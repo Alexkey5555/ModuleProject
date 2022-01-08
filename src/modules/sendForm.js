@@ -10,9 +10,7 @@ const sendForm = ({ formId, someElem = [] }) => {
 
     const validate = (list) => {
         let success = true
-        list.forEach(elem => {
-            console.log(elem.name);
-        })
+
 
         return success
     }
