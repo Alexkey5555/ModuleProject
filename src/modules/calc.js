@@ -1,3 +1,4 @@
+import { animate } from './helpers'
 const calc = (price = 100) => {
     const calcBlock = document.querySelector('.calc-block')
     const calcType = document.querySelector('.calc-type')
@@ -5,6 +6,7 @@ const calc = (price = 100) => {
     const calcCount = document.querySelector('.calc-count')
     const calcDay = document.querySelector('.calc-day')
     const total = document.getElementById('total')
+    let interval
 
     const countCalc = () => {
         const calcTypeValue = +calcType.options[calcType.selectedIndex].value
@@ -28,10 +30,29 @@ const calc = (price = 100) => {
         else {
             totalValue = 0
         }
-        total.textContent = totalValue
+        animate({
+            duration: 1000,
+            timing(timeFraction) {
+                return timeFraction;
+            },
+            draw(progress) {
+                let n = +total.textContent
+                let to = +total.textContent - totalValue
+
+                if (n < totalValue) {
+                    n += totalValue * progress
+                }
+                else if (n > totalValue) {
+                    n = n - to * progress
+                }
+                total.textContent = Math.trunc(n)
+
+            }
+        });
     }
-    calcBlock.addEventListener('input', (e) => {
-        if (e.target === calcType || e.target === calcSquare ||
+    calcBlock.addEventListener('change', (e) => {
+        clearInterval(interval);
+        if (e.target === calcSquare ||
             e.target === calcCount || e.target === calcDay) {
             countCalc()
         }
