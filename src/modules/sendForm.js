@@ -7,6 +7,13 @@ const sendForm = ({ formId, someElem = [] }) => {
     const successText = 'Спасибо. Наш менеджер с вами свяжется'
     statusBlock.style.color = 'white'
 
+    const redBorder = (element) => {
+        element.style.border = '2px solid red'
+        setTimeout(() => {
+            element.style.border = ''
+        }, 2000)
+    }
+
     const validate = (list) => {
         let success = true
 
@@ -14,28 +21,28 @@ const sendForm = ({ formId, someElem = [] }) => {
             if (elem.name === 'user_name') {
                 let checkName = /[^а-яА-Я ]/g;
                 if (checkName.test(elem.value) || elem.value.length <= 1) {
-                    elem.style.border = '1px solid red'
+                    redBorder(elem)
                     success = false
                 }
             }
             if (elem.name === 'user_phone') {
                 let checkPhone = /[^\d\-+\(\)]+/g;
-                if (checkPhone.test(elem.value) || elem.value.length < 5 || elem.value.length > 11) {
+                let checkNum = /[^0-9]/g;
+                if (checkPhone.test(elem.value) || elem.value.replace(checkNum, '').length < 5 || elem.value.replace(checkNum, '').length > 11) {
                     success = false
-                    elem.style.border = '1px solid red'
-
+                    redBorder(elem)
                 }
             }
             if (elem.name === 'user_message') {
                 let checkMes = /[^а-яА-Я \.\d]/g;
                 if (checkMes.test(elem.value) || elem.value.length < 4) {
-                    elem.style.border = '1px solid red'
+                    redBorder(elem)
                     success = false
                 }
             }
             if (elem.name === 'user_email') {
                 if (elem.value.length === 0) {
-                    elem.style.border = '1px solid red'
+                    redBorder(elem)
                     success = false
                 }
             }
