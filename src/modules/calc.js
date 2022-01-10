@@ -52,6 +52,11 @@ const calc = (price = 100) => {
     }
     calcBlock.addEventListener('change', (e) => {
         clearInterval(interval);
+        if (calcType.options[calcType.selectedIndex].value === '') {
+            calcSquare.value = ''
+            calcCount.value = ''
+            calcDay.value = ''
+        }
         if (e.target === calcSquare ||
             e.target === calcCount || e.target === calcDay) {
             countCalc()

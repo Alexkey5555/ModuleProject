@@ -20,10 +20,11 @@ const sendForm = ({ formId, someElem = [] }) => {
         list.forEach(elem => {
             if (elem.name === 'user_name') {
                 let checkName = /[^а-яА-Я ]/g;
-                if (checkName.test(elem.value) || elem.value.length <= 1) {
+                if (checkName.test(elem.value) || elem.value.length <= 1 || elem.value.trim() === '') {
                     redBorder(elem)
                     success = false
                 }
+
             }
             if (elem.name === 'user_phone') {
                 let checkPhone = /[^\d\-+\(\)]+/g;
@@ -34,8 +35,8 @@ const sendForm = ({ formId, someElem = [] }) => {
                 }
             }
             if (elem.name === 'user_message') {
-                let checkMes = /[^а-яА-Я \.\d]/g;
-                if (checkMes.test(elem.value) || elem.value.length < 4) {
+                let checkMes = /[^а-яА-Я\. \d]/g;
+                if (checkMes.test(elem.value) || elem.value.length < 4 || elem.value.trim() === '') {
                     redBorder(elem)
                     success = false
                 }
@@ -46,6 +47,7 @@ const sendForm = ({ formId, someElem = [] }) => {
                     success = false
                 }
             }
+
         })
         return success
     }

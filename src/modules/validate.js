@@ -12,10 +12,12 @@ const validate = () => {
     const validateText = (e) => {
         let check = /[^а-яА-Я -]/g;
         e.target.value = e.target.value.replace(check, '');
+        e.target.value = e.target.value.trim()
     }
     const validateMes = (e) => {
         let check = /[^а-яА-Я -\d\,\.]/g;
         e.target.value = e.target.value.replace(check, '');
+
     }
     const validateEmail = (e) => {
         let check = /[^\w\@\-!.'*`]+/g;

@@ -7,7 +7,8 @@ const menu = () => {
             e.preventDefault()
             menu.classList.toggle('active-menu')
         }
-        else if (!e.target.classList.contains('active-menu')) {
+
+        else if (!e.target.classList.contains('active-menu') && !e.target.closest('menu>ul>li')) {
             menu.classList.remove('active-menu')
         }
         if (e.target.closest('a[href="#service-block"]')) {

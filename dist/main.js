@@ -1,1 +1,176 @@
-(()=>{"use strict";const e=({timing:e,draw:t,duration:o})=>{let n=performance.now();requestAnimationFrame((function a(l){let r=(l-n)/o;r>1&&(r=1);let c=e(r);t(c),r<1&&requestAnimationFrame(a)}))},t=({formId:e,someElem:t=[]})=>{const o=document.getElementById(e),n=document.querySelector(".popup"),a=document.createElement("div");a.style.color="white";const l=e=>{e.style.border="2px solid red",setTimeout((()=>{e.style.border=""}),2e3)},r=e=>fetch("https://jsonplaceholder.typicode.com/posts",{method:"POST",body:JSON.stringify(e),headers:{"Content-Type":"application/json"}}).then((e=>e.json()));try{if(!o)throw new Error("Верните форму на место");o.addEventListener("submit",(e=>{e.preventDefault(),(()=>{const e=o.querySelectorAll("input"),c=new FormData(o),s={};a.textContent="Загрузка...",o.append(a),c.forEach(((e,t)=>{s[t]=e})),t.forEach((e=>{const t=document.getElementById(e.id);"block"===e.type?s[e.id]=t.textContent:"input"===e.type&&(s[e.id]=t.value)})),(e=>{let t=!0;return e.forEach((e=>{if("user_name"===e.name&&(/[^а-яА-Я ]/g.test(e.value)||e.value.length<=1)&&(l(e),t=!1),"user_phone"===e.name){let o=/[^0-9]/g;(/[^\d\-+\(\)]+/g.test(e.value)||e.value.replace(o,"").length<5||e.value.replace(o,"").length>11)&&(t=!1,l(e))}"user_message"===e.name&&(/[^а-яА-Я \.\d]/g.test(e.value)||e.value.length<4)&&(l(e),t=!1),"user_email"===e.name&&0===e.value.length&&(l(e),t=!1)})),t})(e)?r(s).then((t=>{a.textContent="Спасибо. Наш менеджер с вами свяжется",e.forEach((e=>{e.value=""})),setTimeout((()=>{a.textContent="",n.style.display="none"}),1e3)})).catch((e=>{a.textContent="Ошибка..."})):(alert("Данные не валидны!!!"),a.textContent="")})()}))}catch(e){console.log(e.message)}};(e=>{const t=document.getElementById("timer-hours"),o=document.getElementById("timer-minutes"),n=document.getElementById("timer-seconds"),a=document.querySelectorAll("#timer span"),l=document.createElement("span"),r=document.createElement("span");let c;r.textContent=" : ",l.textContent="00",l.id="timer-days",a[0].before(l),a[0].before(r);const s=()=>{let t=(new Date(e).getTime()-(new Date).getTime())/1e3;return{timeRemaining:t,days:Math.floor(t/60/60/24),hours:Math.floor(t/60/60%24),minutes:Math.floor(t/60%60),seconds:Math.floor(t%60)}};c=s();const i=()=>{let e=s();e.days<10?l.textContent="0"+e.days:l.textContent=e.days,e.hours<10?t.textContent="0"+e.hours:t.textContent=e.hours,e.minutes<10?o.textContent="0"+e.minutes:o.textContent=e.minutes,e.seconds<10?n.textContent="0"+e.seconds:n.textContent=e.seconds};c.timeRemaining>0&&(i(),setInterval(i,1e3))})("31 april 2022, 24:00"),(()=>{const e=document.querySelector("menu"),t=e.querySelectorAll("ul>li>a");document.addEventListener("click",(o=>{o.target.closest(".menu")||o.target.classList.contains("close-btn")?(o.preventDefault(),e.classList.toggle("active-menu")):o.target.classList.contains("active-menu")||e.classList.remove("active-menu"),o.target.closest('a[href="#service-block"]')&&(o.preventDefault(),document.getElementById("service-block").scrollIntoView({behavior:"smooth"})),t.forEach((t=>{if(o.target===t){o.preventDefault();let t=o.target.attributes.href.value.slice(1);document.getElementById(t).scrollIntoView({behavior:"smooth"}),e.classList.remove("active-menu")}}))}))})(),(()=>{const t=document.querySelector(".popup");document.querySelectorAll(".popup-btn").forEach((o=>{o.addEventListener("click",(()=>{t.style.display="block",t.style.opacity="0",e({duration:1e3,timing:e=>e,draw(e){t.style.opacity=e}})}))})),t.addEventListener("click",(e=>{e.target.closest(".popup-content")&&!e.target.classList.contains("popup-close")||(t.style.display="none")}))})(),(()=>{const e=document.querySelectorAll(".calc-item"),t=document.querySelectorAll('input[type="text"]'),o=document.querySelectorAll('input[name="user_message"]'),n=document.querySelectorAll('input[type="email"]'),a=document.querySelectorAll('input[type="tel"]'),l=e=>{e.target.value=e.target.value.replace(/\D+/g,"")},r=e=>{e.target.value=e.target.value.replace(/[^а-яА-Я -]/g,"")},c=e=>{e.target.value=e.target.value.replace(/[^а-яА-Я -\d\,\.]/g,"")},s=e=>{e.target.value=e.target.value.replace(/[^\w\@\-!.'*`]+/g,"")},i=e=>{e.target.value=e.target.value.replace(/[^\d\-+\(\)]+/g,"")};e.forEach((e=>{e[0]||e.addEventListener("input",l)})),t.forEach((e=>{/calc-item/g.test(e.classList.value)||e.addEventListener("input",r)})),o.forEach((e=>{e.addEventListener("input",c)})),n.forEach((e=>{e.addEventListener("input",s)})),a.forEach((e=>{e.addEventListener("input",i)}))})(),(()=>{const e=document.querySelector(".service-header"),t=document.querySelectorAll(".service-header-tab"),o=document.querySelectorAll(".service-tab");e.addEventListener("click",(e=>{if(e.target.closest(".service-header-tab")){const n=e.target.closest(".service-header-tab");t.forEach(((e,t)=>{e===n?(e.classList.add("active"),o[t].classList.remove("d-none")):(e.classList.remove("active"),o[t].classList.add("d-none"))}))}}))})(),(()=>{const e=document.querySelector(".portfolio-content"),t=document.querySelectorAll(".portfolio-item");for(let e=0;e<t.length;e++){const t=document.querySelector(".portfolio-dots");let o=document.createElement("li");0==e?(o.classList.add("dot"),o.classList.add("dot-active")):o.classList.add("dot"),t.append(o)}const o=document.querySelectorAll(".dot");let n,a=0;const l=(e,t,o)=>{e[t].classList.remove(o)},r=(e,t,o)=>{e[t].classList.add(o)},c=()=>{l(t,a,"portfolio-item-active"),l(o,a,"dot-active"),a++,a>=t.length&&(a=0),r(t,a,"portfolio-item-active"),r(o,a,"dot-active")},s=()=>{n=setInterval(c,2e3)};e.addEventListener("click",(e=>{e.preventDefault(),e.target.matches(".dot, .portfolio-btn")&&(l(t,a,"portfolio-item-active"),l(o,a,"dot-active"),e.target.matches("#arrow-right")?a++:e.target.matches("#arrow-left")?a--:e.target.classList.contains("dot")&&o.forEach(((t,o)=>{e.target===t&&(a=o)})),a>=t.length&&(a=0),a<0&&(a=t.length-1),r(t,a,"portfolio-item-active"),r(o,a,"dot-active"))})),e.addEventListener("mouseenter",(e=>{e.target.matches(".dot, .portfolio-btn")&&clearInterval(n)}),!0),e.addEventListener("mouseleave",(e=>{e.target.matches(".dot, .portfolio-btn")&&s()}),!0),s()})(),((t=100)=>{const o=document.querySelector(".calc-block"),n=document.querySelector(".calc-type"),a=document.querySelector(".calc-square"),l=document.querySelector(".calc-count"),r=document.querySelector(".calc-day"),c=document.getElementById("total");o.addEventListener("change",(o=>{clearInterval(void 0),o.target!==a&&o.target!==l&&o.target!==r||(()=>{const o=+n.options[n.selectedIndex].value,s=a.value;let i=0,d=1,u=1;l.value>1&&(d+=+l.value/10),r.value&&r.value<5?u=2:r.value&&r.value<10&&(u=1.5),i=n.value&&a.value?t*o*s*d*u:0,e({duration:1e3,timing:e=>e,draw(e){let t=+c.textContent,o=+c.textContent-i;t<i?t+=i*e:t>i&&(t-=o*e),c.textContent=Math.trunc(t)}})})()}))})(100),t({formId:"form1",someElem:[{type:"block",id:"total"}]}),t({formId:"form2",someElem:[{type:"block",id:"total"}]}),t({formId:"form3",someElem:[{type:"block",id:"total"}]})})();
+/*
+ * ATTENTION: The "eval" devtool has been used (maybe by default in mode: "development").
+ * This devtool is neither made for production nor for readable output files.
+ * It uses "eval()" calls to create a separate source file in the browser devtools.
+ * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
+ * or disable the default devtool with "devtool: false".
+ * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
+ */
+/******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
+/******/ 	var __webpack_modules__ = ({
+
+/***/ "./index.js":
+/*!******************!*\
+  !*** ./index.js ***!
+  \******************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_timer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/timer */ \"./modules/timer.js\");\n/* harmony import */ var _modules_menu__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/menu */ \"./modules/menu.js\");\n/* harmony import */ var _modules_modal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/modal */ \"./modules/modal.js\");\n/* harmony import */ var _modules_validate__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/validate */ \"./modules/validate.js\");\n/* harmony import */ var _modules_tabs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/tabs */ \"./modules/tabs.js\");\n/* harmony import */ var _modules_slider__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/slider */ \"./modules/slider.js\");\n/* harmony import */ var _modules_calc__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/calc */ \"./modules/calc.js\");\n/* harmony import */ var _modules_sendForm__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./modules/sendForm */ \"./modules/sendForm.js\");\n\n\n\n\n\n\n\n\n\n\n\n(0,_modules_timer__WEBPACK_IMPORTED_MODULE_0__[\"default\"])('31 april 2022, 24:00');\n(0,_modules_menu__WEBPACK_IMPORTED_MODULE_1__[\"default\"])()\n;(0,_modules_modal__WEBPACK_IMPORTED_MODULE_2__[\"default\"])()\n;(0,_modules_validate__WEBPACK_IMPORTED_MODULE_3__[\"default\"])()\n;(0,_modules_tabs__WEBPACK_IMPORTED_MODULE_4__[\"default\"])()\n;(0,_modules_slider__WEBPACK_IMPORTED_MODULE_5__[\"default\"])()\n;(0,_modules_calc__WEBPACK_IMPORTED_MODULE_6__[\"default\"])(100)\n;(0,_modules_sendForm__WEBPACK_IMPORTED_MODULE_7__[\"default\"])({\n    formId: 'form1',\n})\n;(0,_modules_sendForm__WEBPACK_IMPORTED_MODULE_7__[\"default\"])({\n    formId: 'form2',\n})\n;(0,_modules_sendForm__WEBPACK_IMPORTED_MODULE_7__[\"default\"])({\n    formId: 'form3',\n})\n\n\n//# sourceURL=webpack:///./index.js?");
+
+/***/ }),
+
+/***/ "./modules/calc.js":
+/*!*************************!*\
+  !*** ./modules/calc.js ***!
+  \*************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./helpers */ \"./modules/helpers.js\");\n\nconst calc = (price = 100) => {\n    const calcBlock = document.querySelector('.calc-block')\n    const calcType = document.querySelector('.calc-type')\n    const calcSquare = document.querySelector('.calc-square')\n    const calcCount = document.querySelector('.calc-count')\n    const calcDay = document.querySelector('.calc-day')\n    const total = document.getElementById('total')\n    let interval\n\n    const countCalc = () => {\n        const calcTypeValue = +calcType.options[calcType.selectedIndex].value\n        const calcSquareValue = calcSquare.value\n\n        let totalValue = 0\n        let calcCountValue = 1\n        let calcDayValue = 1\n\n        if (calcCount.value > 1) {\n            calcCountValue += +calcCount.value / 10\n        }\n        if (calcDay.value && calcDay.value < 5) {\n            calcDayValue = 2\n        } else if (calcDay.value && calcDay.value < 10) {\n            calcDayValue = 1.5\n        }\n        if (calcType.value && calcSquare.value) {\n            totalValue = price * calcTypeValue * calcSquareValue * calcCountValue * calcDayValue\n        }\n        else {\n            totalValue = 0\n        }\n        (0,_helpers__WEBPACK_IMPORTED_MODULE_0__.animate)({\n            duration: 1000,\n            timing(timeFraction) {\n                return timeFraction;\n            },\n            draw(progress) {\n                let n = +total.textContent\n                let to = +total.textContent - totalValue\n\n                if (n < totalValue) {\n                    n += totalValue * progress\n                }\n                else if (n > totalValue) {\n                    n = n - to * progress\n                }\n                total.textContent = Math.trunc(n)\n\n            }\n        });\n    }\n    calcBlock.addEventListener('change', (e) => {\n        clearInterval(interval);\n        if (calcType.options[calcType.selectedIndex].value === '') {\n            calcSquare.value = ''\n            calcCount.value = ''\n            calcDay.value = ''\n        }\n        if (e.target === calcSquare ||\n            e.target === calcCount || e.target === calcDay) {\n            countCalc()\n        }\n    })\n}\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (calc);\n\n//# sourceURL=webpack:///./modules/calc.js?");
+
+/***/ }),
+
+/***/ "./modules/helpers.js":
+/*!****************************!*\
+  !*** ./modules/helpers.js ***!
+  \****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"animate\": () => (/* binding */ animate)\n/* harmony export */ });\nconst animate = ({ timing, draw, duration }) => {\n\n    let start = performance.now();\n\n    requestAnimationFrame(function animate(time) {\n        // timeFraction изменяется от 0 до 1\n        let timeFraction = (time - start) / duration;\n        if (timeFraction > 1) timeFraction = 1;\n\n        // вычисление текущего состояния анимации\n        let progress = timing(timeFraction);\n\n        draw(progress); // отрисовать её\n\n        if (timeFraction < 1) {\n            requestAnimationFrame(animate);\n        }\n\n    });\n}\n\n\n//# sourceURL=webpack:///./modules/helpers.js?");
+
+/***/ }),
+
+/***/ "./modules/menu.js":
+/*!*************************!*\
+  !*** ./modules/menu.js ***!
+  \*************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nconst menu = () => {\n    const menu = document.querySelector('menu')\n    const menuItems = menu.querySelectorAll('ul>li>a')\n\n    document.addEventListener('click', (e) => {\n        if (e.target.closest('.menu') || e.target.classList.contains('close-btn')) {\n            e.preventDefault()\n            menu.classList.toggle('active-menu')\n        }\n\n        else if (!e.target.classList.contains('active-menu') && !e.target.closest('menu>ul>li')) {\n            menu.classList.remove('active-menu')\n        }\n        if (e.target.closest('a[href=\"#service-block\"]')) {\n            e.preventDefault()\n            let href = document.getElementById('service-block')\n            href.scrollIntoView({ behavior: \"smooth\" })\n        }\n        menuItems.forEach((item) => {\n            if (e.target === item) {\n                e.preventDefault()\n                let linkhref = e.target.attributes.href.value.slice(1)\n                let link = document.getElementById(linkhref)\n                link.scrollIntoView({ behavior: \"smooth\" })\n                menu.classList.remove('active-menu')\n            }\n        })\n\n    })\n}\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (menu);\n\n\n\n//# sourceURL=webpack:///./modules/menu.js?");
+
+/***/ }),
+
+/***/ "./modules/modal.js":
+/*!**************************!*\
+  !*** ./modules/modal.js ***!
+  \**************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./helpers */ \"./modules/helpers.js\");\n\nconst modal = () => {\n    const modal = document.querySelector('.popup')\n    const buttons = document.querySelectorAll('.popup-btn')\n    const width = document.documentElement.scrollWidth\n\n    buttons.forEach(btn => {\n        btn.addEventListener('click', () => {\n            modal.style.display = 'block'\n            modal.style.opacity = '0'\n            if (width > 724) {\n                (0,_helpers__WEBPACK_IMPORTED_MODULE_0__.animate)({\n                    duration: 1000,\n                    timing(timeFraction) {\n                        return timeFraction;\n                    },\n                    draw(progress) {\n                        modal.style.opacity = progress\n                    }\n                });\n            }\n            else {\n                modal.style.opacity = '1'\n            }\n        })\n    })\n    modal.addEventListener('click', (e) => {\n        if (!e.target.closest('.popup-content') || e.target.classList.contains('popup-close')) {\n            modal.style.display = 'none'\n        }\n    })\n}\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (modal);\n\n//# sourceURL=webpack:///./modules/modal.js?");
+
+/***/ }),
+
+/***/ "./modules/sendForm.js":
+/*!*****************************!*\
+  !*** ./modules/sendForm.js ***!
+  \*****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nconst sendForm = ({ formId, someElem = [] }) => {\n    const form = document.getElementById(formId)\n    const modal = document.querySelector('.popup')\n    const statusBlock = document.createElement('div')\n    const loadText = 'Загрузка...'\n    const errorText = 'Ошибка...'\n    const successText = 'Спасибо. Наш менеджер с вами свяжется'\n    statusBlock.style.color = 'white'\n\n    const redBorder = (element) => {\n        element.style.border = '2px solid red'\n        setTimeout(() => {\n            element.style.border = ''\n        }, 2000)\n    }\n\n    const validate = (list) => {\n        let success = true\n\n        list.forEach(elem => {\n            if (elem.name === 'user_name') {\n                let checkName = /[^а-яА-Я ]/g;\n                if (checkName.test(elem.value) || elem.value.length <= 1 || elem.value.trim() === '') {\n                    redBorder(elem)\n                    success = false\n                }\n\n            }\n            if (elem.name === 'user_phone') {\n                let checkPhone = /[^\\d\\-+\\(\\)]+/g;\n                let checkNum = /[^0-9]/g;\n                if (checkPhone.test(elem.value) || elem.value.replace(checkNum, '').length < 5 || elem.value.replace(checkNum, '').length > 11) {\n                    success = false\n                    redBorder(elem)\n                }\n            }\n            if (elem.name === 'user_message') {\n                let checkMes = /[^а-яА-Я\\. \\d]/g;\n                if (checkMes.test(elem.value) || elem.value.length < 4 || elem.value.trim() === '') {\n                    redBorder(elem)\n                    success = false\n                }\n            }\n            if (elem.name === 'user_email') {\n                if (elem.value.length === 0) {\n                    redBorder(elem)\n                    success = false\n                }\n            }\n\n        })\n        return success\n    }\n    const submitFrom = () => {\n        const formElements = form.querySelectorAll('input')\n        const formData = new FormData(form)\n        const formBody = {}\n\n        statusBlock.textContent = loadText\n        form.append(statusBlock)\n\n        formData.forEach((val, key) => {\n            formBody[key] = val\n        })\n        someElem.forEach(elem => {\n            const element = document.getElementById(elem.id)\n\n            if (elem.type === 'block') {\n                formBody[elem.id] = element.textContent\n            }\n            else if (elem.type === 'input') {\n                formBody[elem.id] = element.value\n            }\n        })\n        if (validate(formElements)) {\n            sendData(formBody)\n                .then(data => {\n                    statusBlock.textContent = successText\n                    formElements.forEach(input => {\n                        input.value = ''\n                    })\n                    setTimeout(() => {\n                        statusBlock.textContent = ''\n                        modal.style.display = 'none'\n                    }, 1000)\n                })\n                .catch(error => {\n                    statusBlock.textContent = errorText\n                })\n        } else {\n            alert('Данные не валидны!!!')\n\n            statusBlock.textContent = ''\n        }\n    }\n    const sendData = (data) => {\n        return fetch('https://jsonplaceholder.typicode.com/posts', {\n            method: 'POST',\n            body: JSON.stringify(data),\n            headers: {\n                \"Content-Type\": \"application/json\"\n            }\n        }).then(res => res.json())\n    }\n\n    try {\n        if (!form) {\n            throw new Error('Верните форму на место')\n        }\n        form.addEventListener('submit', (e) => {\n            e.preventDefault()\n            submitFrom()\n\n        })\n    } catch (error) {\n        console.log(error.message);\n    }\n\n}\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (sendForm);\n\n//# sourceURL=webpack:///./modules/sendForm.js?");
+
+/***/ }),
+
+/***/ "./modules/slider.js":
+/*!***************************!*\
+  !*** ./modules/slider.js ***!
+  \***************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nconst slider = () => {\n    const sliderBlock = document.querySelector('.portfolio-content')\n    const slides = document.querySelectorAll('.portfolio-item')\n\n    for (let i = 0; i < slides.length; i++) {\n        const dote = document.querySelector('.portfolio-dots')\n        let dot = document.createElement('li')\n        if (i == 0) {\n            dot.classList.add('dot')\n            dot.classList.add('dot-active')\n        }\n        else {\n            dot.classList.add('dot')\n        }\n        dote.append(dot)\n    }\n\n    const dots = document.querySelectorAll('.dot')\n\n    let currentSlide = 0\n    let interval\n    const timeInterval = 2000\n    const prevSlide = (elems, index, strClass) => {\n        elems[index].classList.remove(strClass)\n    }\n    const nextSlide = (elems, index, strClass) => {\n        elems[index].classList.add(strClass)\n    }\n    const autoSlide = () => {\n        prevSlide(slides, currentSlide, 'portfolio-item-active')\n        prevSlide(dots, currentSlide, 'dot-active')\n\n        currentSlide++\n        if (currentSlide >= slides.length) {\n            currentSlide = 0\n        }\n        nextSlide(slides, currentSlide, 'portfolio-item-active')\n        nextSlide(dots, currentSlide, 'dot-active')\n\n    }\n    const startSlide = () => {\n\n        interval = setInterval(autoSlide, timeInterval)\n    }\n    const stopSlide = () => {\n        clearInterval(interval)\n    }\n    sliderBlock.addEventListener('click', (e) => {\n        e.preventDefault()\n        if (!e.target.matches('.dot, .portfolio-btn')) {\n            return\n        }\n\n        prevSlide(slides, currentSlide, 'portfolio-item-active')\n        prevSlide(dots, currentSlide, 'dot-active')\n        if (e.target.matches('#arrow-right')) {\n            currentSlide++\n        }\n        else if (e.target.matches('#arrow-left')) {\n            currentSlide--\n        }\n        else if (e.target.classList.contains('dot')) {\n            dots.forEach((dot, index) => {\n                if (e.target === dot) {\n                    currentSlide = index\n                }\n            })\n        }\n        if (currentSlide >= slides.length) {\n            currentSlide = 0\n        }\n        if (currentSlide < 0) {\n            currentSlide = slides.length - 1\n        }\n        nextSlide(slides, currentSlide, 'portfolio-item-active')\n        nextSlide(dots, currentSlide, 'dot-active')\n    })\n    sliderBlock.addEventListener('mouseenter', (e) => {\n        if (e.target.matches('.dot, .portfolio-btn')) {\n            stopSlide()\n        }\n    }, true)\n    sliderBlock.addEventListener('mouseleave', (e) => {\n        if (e.target.matches('.dot, .portfolio-btn')) {\n            startSlide(timeInterval)\n        }\n    }, true)\n\n    startSlide(timeInterval)\n}\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (slider);\n\n//# sourceURL=webpack:///./modules/slider.js?");
+
+/***/ }),
+
+/***/ "./modules/tabs.js":
+/*!*************************!*\
+  !*** ./modules/tabs.js ***!
+  \*************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nconst tabs = () => {\n    const tabPanel = document.querySelector('.service-header')\n    const tabs = document.querySelectorAll('.service-header-tab')\n    const tabContent = document.querySelectorAll('.service-tab')\n\n    tabPanel.addEventListener('click', (e) => {\n        if (e.target.closest('.service-header-tab')) {\n            const tabBtn = e.target.closest('.service-header-tab')\n\n            tabs.forEach((tab, index) => {\n                if (tab === tabBtn) {\n                    tab.classList.add('active')\n                    tabContent[index].classList.remove('d-none')\n                }\n                else {\n                    tab.classList.remove('active')\n                    tabContent[index].classList.add('d-none')\n                }\n            })\n        }\n    })\n}\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (tabs);\n\n//# sourceURL=webpack:///./modules/tabs.js?");
+
+/***/ }),
+
+/***/ "./modules/timer.js":
+/*!**************************!*\
+  !*** ./modules/timer.js ***!
+  \**************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nconst timer = (deadLine) => {\n    const timerHours = document.getElementById('timer-hours')\n    const timerMinutes = document.getElementById('timer-minutes')\n    const timerSeconds = document.getElementById('timer-seconds')\n    const timer = document.querySelectorAll('#timer span')\n    const timerDays = document.createElement('span')\n    const span = document.createElement('span')\n    let checkTime;\n    span.textContent = ' : '\n    timerDays.textContent = '00'\n    timerDays.id = 'timer-days'\n    timer[0].before(timerDays)\n    timer[0].before(span)\n    const getTimeRemaining = () => {\n        let dateStop = new Date(deadLine).getTime()\n        let dateNow = new Date().getTime()\n        let timeRemaining = (dateStop - dateNow) / 1000\n        let days = Math.floor(timeRemaining / 60 / 60 / 24)\n        let hours = Math.floor((timeRemaining / 60 / 60) % 24)\n        let minutes = Math.floor((timeRemaining / 60) % 60)\n        let seconds = Math.floor(timeRemaining % 60)\n\n        return { timeRemaining, days, hours, minutes, seconds }\n    }\n\n    checkTime = getTimeRemaining()\n    const updateClock = () => {\n        let getTime = getTimeRemaining()\n\n        if (getTime.days < 10) {\n            timerDays.textContent = '0' + getTime.days;\n        }\n        else {\n            timerDays.textContent = getTime.days\n        }\n        if (getTime.hours < 10) {\n            timerHours.textContent = '0' + getTime.hours;\n        }\n        else {\n            timerHours.textContent = getTime.hours\n        }\n        if (getTime.minutes < 10) {\n            timerMinutes.textContent = '0' + getTime.minutes;\n        }\n        else {\n            timerMinutes.textContent = getTime.minutes\n        }\n        if (getTime.seconds < 10) {\n            timerSeconds.textContent = '0' + getTime.seconds;\n        }\n        else {\n            timerSeconds.textContent = getTime.seconds\n        }\n\n    }\n    if (checkTime.timeRemaining > 0) {\n        updateClock()\n        setInterval(updateClock, 1000)\n    }\n\n\n}\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (timer);\n\n//# sourceURL=webpack:///./modules/timer.js?");
+
+/***/ }),
+
+/***/ "./modules/validate.js":
+/*!*****************************!*\
+  !*** ./modules/validate.js ***!
+  \*****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nconst validate = () => {\n    const validCalc = document.querySelectorAll('.calc-item')\n    const validText = document.querySelectorAll('input[type=\"text\"]')\n    const validMes = document.querySelectorAll('input[name=\"user_message\"]')\n    const validEmail = document.querySelectorAll('input[type=\"email\"]')\n    const validTel = document.querySelectorAll('input[type=\"tel\"]')\n\n    const validateCalc = (e) => {\n        let check = /\\D+/g;\n        e.target.value = e.target.value.replace(check, '');\n    }\n    const validateText = (e) => {\n        let check = /[^а-яА-Я -]/g;\n        e.target.value = e.target.value.replace(check, '');\n        e.target.value = e.target.value.trim()\n    }\n    const validateMes = (e) => {\n        let check = /[^а-яА-Я -\\d\\,\\.]/g;\n        e.target.value = e.target.value.replace(check, '');\n\n    }\n    const validateEmail = (e) => {\n        let check = /[^\\w\\@\\-!.'*`]+/g;\n        e.target.value = e.target.value.replace(check, '');\n    }\n    const validateTel = (e) => {\n        let check = /[^\\d\\-+\\(\\)]+/g;\n        e.target.value = e.target.value.replace(check, '');\n    }\n\n    validCalc.forEach((event) => {\n        if (event[0]) {\n            return\n        }\n        else {\n            event.addEventListener('input', validateCalc)\n        }\n    })\n\n    validText.forEach((event) => {\n        if (/calc-item/g.test(event.classList.value)) {\n            return\n        }\n        else {\n            event.addEventListener('input', validateText)\n        }\n    })\n    validMes.forEach((event) => {\n        event.addEventListener('input', validateMes)\n    })\n    validEmail.forEach((event) => {\n        event.addEventListener('input', validateEmail)\n    })\n\n    validTel.forEach((event) => {\n        event.addEventListener('input', validateTel)\n    })\n}\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (validate);\n\n\n//# sourceURL=webpack:///./modules/validate.js?");
+
+/***/ })
+
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/************************************************************************/
+/******/ 	
+/******/ 	// startup
+/******/ 	// Load entry module and return exports
+/******/ 	// This entry module can't be inlined because the eval devtool is used.
+/******/ 	var __webpack_exports__ = __webpack_require__("./index.js");
+/******/ 	
+/******/ })()
+;
