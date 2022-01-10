@@ -19,12 +19,13 @@ const sendForm = ({ formId, someElem = [] }) => {
 
         list.forEach(elem => {
             if (elem.name === 'user_name') {
+
                 let checkName = /[^а-яА-Я ]/g;
                 if (checkName.test(elem.value) || elem.value.length <= 1 || elem.value.trim() === '') {
                     redBorder(elem)
                     success = false
                 }
-
+                elem.value = elem.value.trim()
             }
             if (elem.name === 'user_phone') {
                 let checkPhone = /[^\d\-+\(\)]+/g;
@@ -60,7 +61,8 @@ const sendForm = ({ formId, someElem = [] }) => {
         form.append(statusBlock)
 
         formData.forEach((val, key) => {
-            formBody[key] = val
+            formBody[key] = val.trim()
+
         })
         someElem.forEach(elem => {
             const element = document.getElementById(elem.id)

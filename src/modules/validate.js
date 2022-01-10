@@ -12,7 +12,7 @@ const validate = () => {
     const validateText = (e) => {
         let check = /[^а-яА-Я -]/g;
         e.target.value = e.target.value.replace(check, '');
-        e.target.value = e.target.value.trim()
+
     }
     const validateMes = (e) => {
         let check = /[^а-яА-Я -\d\,\.]/g;
@@ -43,6 +43,7 @@ const validate = () => {
         }
         else {
             event.addEventListener('input', validateText)
+
         }
     })
     validMes.forEach((event) => {
