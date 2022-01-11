@@ -2,13 +2,14 @@ import { animate } from './helpers'
 const modal = () => {
     const modal = document.querySelector('.popup')
     const buttons = document.querySelectorAll('.popup-btn')
-    const width = document.documentElement.scrollWidth
+
 
     buttons.forEach(btn => {
         btn.addEventListener('click', () => {
+            const width = document.documentElement.scrollWidth
             modal.style.display = 'block'
             modal.style.opacity = '0'
-            if (width > 724) {
+            if (width > 768) {
                 animate({
                     duration: 1000,
                     timing(timeFraction) {

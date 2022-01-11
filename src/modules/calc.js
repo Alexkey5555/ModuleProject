@@ -56,6 +56,7 @@ const calc = (price = 100) => {
             calcSquare.value = ''
             calcCount.value = ''
             calcDay.value = ''
+            total.textContent = 0
         }
         if (e.target === calcSquare ||
             e.target === calcCount || e.target === calcDay) {
