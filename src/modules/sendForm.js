@@ -57,7 +57,19 @@ const sendForm = ({ formId, someElem = [] }) => {
         const formData = new FormData(form)
         const formBody = {}
 
-        statusBlock.textContent = loadText
+        // statusBlock.textContent = loadText
+        statusBlock.id = 'warningGradientOuterBarG'
+        statusBlock.innerHTML = `
+        <div id="warningGradientFrontBarG" class="warningGradientAnimationG">
+		<div class="warningGradientBarLineG"></div>
+		<div class="warningGradientBarLineG"></div>
+		<div class="warningGradientBarLineG"></div>
+		<div class="warningGradientBarLineG"></div>
+		<div class="warningGradientBarLineG"></div>
+		<div class="warningGradientBarLineG"></div>
+	</div>
+        `;
+
         form.append(statusBlock)
 
         formData.forEach((val, key) => {
@@ -77,6 +89,8 @@ const sendForm = ({ formId, someElem = [] }) => {
         if (validate(formElements)) {
             sendData(formBody)
                 .then(data => {
+                    statusBlock.innerHTML = ''
+                    statusBlock.id = ''
                     statusBlock.textContent = successText
                     formElements.forEach(input => {
                         input.value = ''
@@ -87,6 +101,8 @@ const sendForm = ({ formId, someElem = [] }) => {
                     }, 1000)
                 })
                 .catch(error => {
+                    statusBlock.innerHTML = ''
+                    statusBlock.id = ''
                     statusBlock.textContent = errorText
                 })
         } else {
