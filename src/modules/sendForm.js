@@ -90,7 +90,7 @@ const sendForm = ({ formId, someElem = [] }) => {
             sendData(formBody)
                 .then(data => {
                     statusBlock.innerHTML = ''
-                    statusBlock.id = ''
+                    statusBlock.removeAttribute('id');
                     statusBlock.textContent = successText
                     formElements.forEach(input => {
                         input.value = ''
@@ -102,12 +102,13 @@ const sendForm = ({ formId, someElem = [] }) => {
                 })
                 .catch(error => {
                     statusBlock.innerHTML = ''
-                    statusBlock.id = ''
+                    statusBlock.removeAttribute('id');
                     statusBlock.textContent = errorText
                 })
         } else {
             alert('Данные не валидны!!!')
-
+            statusBlock.innerHTML = ''
+            statusBlock.removeAttribute('id');
             statusBlock.textContent = ''
         }
     }

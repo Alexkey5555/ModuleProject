@@ -43,6 +43,14 @@ const validate = () => {
         }
         else {
             event.addEventListener('input', validateText)
+            // event.addEventListener('blur', (e) => {
+            //     e.target.style.border = '1px solid blue'
+            //     let check = / {2,}/g;
+            //     let check2 = /-{2,}/g;
+            //     e.target.value = e.target.value.replace(check, ' ');
+            //     e.target.value = e.target.value.replace(check2, '-');
+            //     console.log(e.target.value);
+            // })
 
         }
     })
